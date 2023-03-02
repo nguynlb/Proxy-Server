@@ -21,7 +21,7 @@ const fetchWeather = async (location) => {
 };
 const addWeatherDom = (weatherData) => {
   weather.innerHTML = `
-            <h3 class="temperature">${weatherData.name} : ${weatherData.temp_c}</h3>
+            <h3 id="temperature">${weatherData.name}: ${weatherData.temp_c}°C</h3>
         `;
 };
 searchWeather.addEventListener("submit", (e) => {
