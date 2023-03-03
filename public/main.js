@@ -4,17 +4,20 @@ const cityInput = document.querySelector("#city-input");
 
 const fetchWeather = async (location) => {
   try {
-    fetch(`/api?q=${location}`)
-      .then((response) => response.json())
-      .then((data) => {
-        const {
-          location: { name },
-          current: { temp_c },
-        } = data;
-
-        console.log({ name, temp_c });
-        addWeatherDom({ name, temp_c });
-      });
+    const response = await fetch(`/api?q=${location}`, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    const {
+      location: { name },
+      current: { temp_c },
+    } = result;
+    addWeatherDom({ name, temp_c });
   } catch (err) {
     console.log(err);
   }
